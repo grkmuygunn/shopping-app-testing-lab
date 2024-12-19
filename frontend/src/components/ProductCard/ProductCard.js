@@ -14,15 +14,26 @@ const ProductCard = ({ product, addToCart, cartItems }) => {
     }
   }
 
-  const cartItem = cartItems.find(item => item.id === product.id)
+  const cartItem = cartItems.find((item) => item.id === product.id)
   const quantityInCart = cartItem ? cartItem.quantity : 0
 
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-lg transition duration-300 hover:shadow-2xl" onClick={handleCardClick}>
-      <img src={product.image_url} alt={product.title} className="w-full h-48 object-cover" />
+    <div
+      className="bg-white rounded-lg overflow-hidden shadow-lg transition duration-300 hover:shadow-2xl"
+      onClick={handleCardClick}
+    >
+      <img
+        src={product.image_url}
+        alt={product.title}
+        className="w-full h-48 object-cover"
+      />
       <div className="p-6">
-        <h2 className="text-xl font-semibold mb-2 text-gray-800">{product.title}</h2>
-        <p className="text-2xl font-bold text-indigo-600 mb-4">${product.price.toFixed(2)}</p>
+        <h2 className="text-xl font-semibold mb-2 text-gray-800">
+          {product.title}
+        </h2>
+        <p className="text-2xl font-bold text-indigo-600 mb-4">
+          ${product.price.toFixed(2)}
+        </p>
         {quantityInCart === 0 ? (
           <AddToCartButton
             onClick={(e) => {
