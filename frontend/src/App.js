@@ -8,7 +8,7 @@ import FinishPage from './pages/FinishPage/FinishPage'
 import { useCart } from './hooks/useCart'
 
 function App() {
-  const { cartItems, addToCart, updateQuantity, removeFromCart } = useCart()
+  const { cartItems, addToCart, updateQuantity, removeFromCart, clearCart } = useCart()
 
   return (
     <Router>
@@ -17,7 +17,7 @@ function App() {
         <Route path="/product/:id" element={<ProductDetailPage cartItems={cartItems} addToCart={addToCart} />} />
         <Route path="/cart" element={<CartPage cartItems={cartItems} updateQuantity={updateQuantity} removeFromCart={removeFromCart} />} />
         <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} />} />
-        <Route path="/finish" element={<FinishPage />} />
+        <Route path="/finish" element={<FinishPage clearCart={clearCart} />} />
       </Routes>
     </Router>
   )
