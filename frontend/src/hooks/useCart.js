@@ -33,7 +33,7 @@ export const useCart = () => {
   }
   
   const clearCart = () => {
-    setCartItems([]); // Tüm sepeti temizler
+    setCartItems([]); 
   };
 
 
