@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import axios from 'axios'
 import Header from '../../components/Header/Header'
 import AddToCartButton from '../../components/AddToCartButton/AddToCartButton'
+import QuantitySelector from '../../components/QuantitySelector/QuantitySelector'
 
 import { loadingLabel, productNotFoundError, backToHomepageLabel } from '../constants'
 import { addToCartTitle, outOfStockTitle } from '../../components/constants'
@@ -28,6 +29,9 @@ const ProductDetail = ({ cartItems, addToCart }) => {
     fetchProduct()
   }, [id])
 
+  const cartItem = cartItems.find((item) => item.id === product?.id)
+  const quantityInCart = cartItem ? cartItem.quantity : 0
+
   if (loading) return <div className="text-center mt-8">{loadingLabel}</div>
   if (error) return <div className="text-center mt-8 text-red-500">{error}</div>
   if (!product) return <div className="text-center mt-8">{productNotFoundError}</div>
@@ -49,12 +53,21 @@ const ProductDetail = ({ cartItems, addToCart }) => {
               <p className="text-gray-600 mb-4">{product.description}</p>
               <p className="text-3xl font-bold text-indigo-600 mb-4">${product.price.toFixed(2)}</p>
               <p className="mb-4">In stock: {product.stock}</p>
-              <AddToCartButton
-                onClick={() => addToCart(product)}
-                disabled={product.stock === 0}
-              >
-                {product.stock > 0 ? addToCartTitle : outOfStockTitle}
-              </AddToCartButton>
+              {quantityInCart === 0 ? (
+                <AddToCartButton
+                  onClick={() => addToCart(product)}
+                  disabled={product.stock === 0}
+                >
+                  {product.stock > 0 ? addToCartTitle : outOfStockTitle}
+                </AddToCartButton>
+              ) : (
+                <QuantitySelector
+                  quantity={quantityInCart}
+                  onIncrease={() => addToCart(product)}
+                  onDecrease={() => addToCart(product, -1)}
+                  max={product.stock}
+                />
+              )}
             </div>
           </div>
         </div>
