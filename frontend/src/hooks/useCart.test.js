@@ -75,4 +75,13 @@ describe('useCart', () => {
 
         expect(result.current.cartItems).toEqual([]);
     });
+
+    it('clear cart when clearCart is called', () => {
+        act(() => {
+            result.current.clearCart();
+        });
+        expect(result.current.cartItems).toEqual([]);
+
+    });
+
 });
