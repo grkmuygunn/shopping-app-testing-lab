@@ -48,5 +48,5 @@ Then you can interact with the DB: `sqlite3 backend/shopping.db`
 Notes for myself:
 
 I need to fix
-- Checkout behavior, there's a failure
-- When user navigates to the product details and adds a product to cart, carting happens as expected but UI doesn't reflect that. Change the button behavior to mimic ProductCard component's on Homepage.
+~- Checkout behavior, there's a failure~ (SOLVED)
+~- When user navigates to the product details and adds a product to cart, carting happens as expected but UI doesn't reflect that. Change the button behavior to mimic ProductCard component's on Homepage.~ (SOLVED)

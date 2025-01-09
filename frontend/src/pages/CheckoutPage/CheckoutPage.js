@@ -4,7 +4,7 @@ import Header from '../../components/Header/Header'
 
 import * as constants from './constants'
 
-const Checkout = ({ cartItems, onCheckoutComplete }) => {
+const Checkout = ({ cartItems }) => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: '',
@@ -55,6 +55,9 @@ const Checkout = ({ cartItems, onCheckoutComplete }) => {
     }
   }
 
+  const onCheckoutComplete = () => {
+    navigate('/finish')
+  }
 
   const isFormValid = () => {
     return (
@@ -144,11 +147,10 @@ const Checkout = ({ cartItems, onCheckoutComplete }) => {
           </div>
           <button
             type="submit"
-            className={`w-full px-4 py-2 rounded ${
-              isFormValid()
-                ? 'bg-blue-500 text-white hover:bg-blue-600'
-                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-            }`}
+            className={`w-full px-4 py-2 rounded ${isFormValid()
+              ? 'bg-blue-500 text-white hover:bg-blue-600'
+              : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              }`}
             disabled={!isFormValid()}
           >
             {constants.proceedLabel}

@@ -31,11 +31,17 @@ export const useCart = () => {
   const removeFromCart = (id) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id))
   }
+  
+  const clearCart = () => {
+    setCartItems([]); // Tüm sepeti temizler
+  };
+
 
   return {
     cartItems,
     addToCart,
     updateQuantity,
-    removeFromCart
+    removeFromCart,
+    clearCart
   }
 }

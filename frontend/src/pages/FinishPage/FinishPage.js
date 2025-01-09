@@ -6,9 +6,13 @@ import {
   postPurchaseText,
   shippingInfoText,
   backToHomepageLabel
-  } from '../constants'
+} from '../constants'
 
-const FinishPage = () => {
+const FinishPage = ({ clearCart }) => {
+  const handleReturnToHomepage = () => {
+    clearCart();
+  };
+
   return (
     <div>
       <Header cartItemCount={0} />
@@ -17,9 +21,7 @@ const FinishPage = () => {
           <h1 className="text-3xl font-bold mb-6 text-green-600">
             {postPurchaseText}
           </h1>
-          <p className="text-xl mb-8">
-            {shippingInfoText}
-          </p>
+          <p className="text-xl mb-8">{shippingInfoText}</p>
           <svg
             className="mx-auto w-24 h-24 text-green-500 mb-8"
             fill="none"
@@ -36,6 +38,7 @@ const FinishPage = () => {
           </svg>
           <Link
             to="/"
+            onClick={handleReturnToHomepage}
             className="inline-block px-6 py-3 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-200"
           >
             {backToHomepageLabel}
@@ -43,7 +46,7 @@ const FinishPage = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FinishPage
+export default FinishPage;
