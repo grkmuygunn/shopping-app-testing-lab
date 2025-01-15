@@ -4,7 +4,7 @@ import Header from '../../components/Header/Header'
 
 import * as constants from './constants'
 
-const Checkout = ({ cartItems }) => {
+const Checkout = ({ cartItems, onCheckoutComplete }) => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: '',
@@ -38,26 +38,24 @@ const Checkout = ({ cartItems }) => {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    const newErrors = validateForm()
+    e.preventDefault();
+    const newErrors = validateForm();
     if (Object.keys(newErrors).length === 0) {
-      // Form is valid, proceed to finish page
-      onCheckoutComplete()
+      if (onCheckoutComplete) {
+        onCheckoutComplete();
+      }
+      navigate('/finish');
     } else {
-      setErrors(newErrors)
+      setErrors(newErrors);
       setTouched({
         name: true,
         surname: true,
         address: true,
         country: true,
-        acknowledgment: true
-      })
+        acknowledgment: true,
+      });
     }
-  }
-
-  const onCheckoutComplete = () => {
-    navigate('/finish')
-  }
+  };
 
   const isFormValid = () => {
     return (
