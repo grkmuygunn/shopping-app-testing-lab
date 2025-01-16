@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as DefaultRouter, Route, Routes } from 'react-router-dom'
 import HomePage from './pages/HomePage/HomePage'
 import ProductDetailPage from './pages/ProductDetailPage/ProductDetailPage'
 import CartPage from './pages/CartPage/CartPage'
@@ -7,7 +7,7 @@ import CheckoutPage from './pages/CheckoutPage/CheckoutPage'
 import FinishPage from './pages/FinishPage/FinishPage'
 import { useCart } from './hooks/useCart'
 
-function App() {
+function App({ Router = DefaultRouter }) {
   const { cartItems, addToCart, updateQuantity, removeFromCart, clearCart } = useCart()
 
   return (
