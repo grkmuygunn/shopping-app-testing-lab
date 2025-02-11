@@ -17,20 +17,20 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart }) => {
     <div className="min-h-screen bg-gray-100">
       <Header cartItemCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)} />
       <div className="container mx-auto px-4 py-12">
-        <h1 className="text-3xl font-bold text-gray-800 mb-8">{yourCartTitle}</h1>
+        <h1 className="text-3xl font-bold text-gray-800 mb-8" data-testid="cart-title">{yourCartTitle}</h1>
         {cartItems.length === 0 ? (
-          <p className="text-center text-gray-600">{emptyCartText} <Link to="/" className="text-indigo-600 hover:text-indigo-800">{continueShoppingText}</Link></p>
+          <p className="text-center text-gray-600" data-testid="cart-empty-message">{emptyCartText} <Link to="/" className="text-indigo-600 hover:text-indigo-800">{continueShoppingText}</Link></p>
         ) : (
           <>
-            <div className="space-y-6">
+            <div className="space-y-6" data-testid="cart-items">
               {cartItems.map((item) => (
-                <div key={item.id} className="flex items-center bg-white p-6 rounded-lg shadow-md">
+                <div key={item.id} className="flex items-center bg-white p-6 rounded-lg shadow-md" data-testid="cart-item">
                   <img src={item.image_url} alt={item.title} className="w-24 h-24 object-cover rounded-md mr-6" />
                   <div className="flex-grow">
-                    <h2 className="text-xl font-semibold text-gray-800">{item.title}</h2>
-                    <p className="text-indigo-600 font-bold">${item.price.toFixed(2)}</p>
+                    <h2 className="text-xl font-semibold text-gray-800" data-testid="cart-item-title">{item.title}</h2>
+                    <p className="text-indigo-600 font-bold" data-testid="cart-item-price">${item.price.toFixed(2)}</p>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-2" data-testid="cart-item-quantity">
                   <button
                     onClick={() => updateQuantity(item.id, item.quantity - 1)}
                     className={`px-3 py-1 rounded-full transition duration-300 ${
@@ -39,6 +39,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart }) => {
                         : 'bg-gray-200 hover:bg-gray-300'
                     }`}
                     disabled={item.quantity <= 1}
+                    data-testid="decrease-quantity"
                     >
                     -
                     </button>
@@ -51,6 +52,7 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart }) => {
                         : 'bg-gray-200 hover:bg-gray-300'
                     }`}
                     disabled={item.quantity >= item.stock}
+                    data-testid="increase-quantity"
                     >
                     +
                     </button>
@@ -58,17 +60,19 @@ const Cart = ({ cartItems, updateQuantity, removeFromCart }) => {
                   <button
                     onClick={() => removeFromCart(item.id)}
                     className="ml-6 text-red-500 hover:text-red-700 transition duration-300"
+                    data-testid="remove-item"
                   >
                     {removeLabel}
                   </button>
                 </div>
               ))}
             </div>
-            <div className="mt-12 bg-white p-6 rounded-lg shadow-md">
+            <div className="mt-12 bg-white p-6 rounded-lg shadow-md" data-testid="cart-summary">
               <p className="text-2xl font-bold text-gray-800 mb-4">Total: ${total.toFixed(2)}</p>
               <Link
                 to="/checkout"
                 className="block w-full text-center px-6 py-3 bg-indigo-600 text-white rounded-full font-semibold hover:bg-indigo-700 transition duration-300"
+                data-testid="proceed-to-checkout"
               >
                 {proceedLabel}
               </Link>

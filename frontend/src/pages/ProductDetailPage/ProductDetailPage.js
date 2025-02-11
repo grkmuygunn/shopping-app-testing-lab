@@ -49,9 +49,9 @@ const ProductDetail = ({ cartItems, addToCart }) => {
               <img className="h-96 w-full object-cover md:w-96" src={product.image_url} alt={product.title} />
             </div>
             <div className="p-8">
-              <h1 className="text-3xl font-bold text-gray-800 mb-4">{product.title}</h1>
-              <p className="text-gray-600 mb-4">{product.description}</p>
-              <p className="text-3xl font-bold text-indigo-600 mb-4">${product.price.toFixed(2)}</p>
+              <h1 className="text-3xl font-bold text-gray-800 mb-4" data-testid='product-detail-title'>{product.title}</h1>
+              <p className="text-gray-600 mb-4" data-testid="product-detail-description">{product.description}</p>
+              <p className="text-3xl font-bold text-indigo-600 mb-4" data-testid="product-detail-price">${product.price.toFixed(2)}</p>
               <p className="mb-4">In stock: {product.stock}</p>
               {quantityInCart === 0 ? (
                 <AddToCartButton
