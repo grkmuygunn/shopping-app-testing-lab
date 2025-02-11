@@ -19,13 +19,15 @@ const ProductCard = ({ product, addToCart, cartItems }) => {
 
   return (
     <div
-      className="bg-white rounded-lg overflow-hidden shadow-lg transition duration-300 hover:shadow-2xl"
+      className="product-card bg-white rounded-lg overflow-hidden shadow-lg transition duration-300 hover:shadow-2xl"
       onClick={handleCardClick}
+      data-testid="product-card"
     >
       <img
         src={product.image_url}
         alt={product.title}
         className="w-full h-48 object-cover"
+        data-testid="product-image"
       />
       <div className="p-6">
         <h2 className="text-xl font-semibold mb-2 text-gray-800">

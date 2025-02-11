@@ -73,8 +73,8 @@ const Checkout = ({ cartItems, onCheckoutComplete }) => {
     <div>
       <Header cartItemCount={cartItems.reduce((total, item) => total + item.quantity, 0)} />
       <div className="container mx-auto mt-8 px-4">
-        <h1 className="text-3xl font-bold mb-6">{constants.checkoutTitle}</h1>
-        <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
+        <h1 className="text-3xl font-bold mb-6" data-testid="checkout-title">{constants.checkoutTitle}</h1>
+        <form onSubmit={handleSubmit} className="max-w-lg mx-auto" data-testid="checkout-form">
           <p className="text-sm text-gray-600 mb-4">{constants.requiredFieldsText}</p>
           <div className="mb-4">
             <label htmlFor="name" className="block mb-2">{constants.nameFieldLabel}</label>
@@ -85,6 +85,7 @@ const Checkout = ({ cartItems, onCheckoutComplete }) => {
               value={formData.name}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded"
+              data-testid="checkout-name"
             />
             {touched.name && errors.name && <p className="text-red-500 mt-1">{errors.name}</p>}
           </div>
@@ -97,6 +98,7 @@ const Checkout = ({ cartItems, onCheckoutComplete }) => {
               value={formData.surname}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded"
+              data-testid="checkout-surname"
             />
             {touched.surname && errors.surname && <p className="text-red-500 mt-1">{errors.surname}</p>}
           </div>
@@ -108,6 +110,7 @@ const Checkout = ({ cartItems, onCheckoutComplete }) => {
               value={formData.address}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded"
+              data-testid="checkout-address"
             />
             {touched.address && errors.address && <p className="text-red-500 mt-1">{errors.address}</p>}
           </div>
@@ -119,6 +122,7 @@ const Checkout = ({ cartItems, onCheckoutComplete }) => {
               value={formData.country}
               onChange={handleChange}
               className="w-full px-3 py-2 border rounded"
+              data-testid="checkout-country"
             >
               <option value="">{constants.countryFieldPlaceholder}</option>
               {countries.map(country => (
@@ -135,6 +139,7 @@ const Checkout = ({ cartItems, onCheckoutComplete }) => {
                 checked={formData.acknowledgment}
                 onChange={handleChange}
                 className="mr-2"
+                data-testid="checkout-acknowledgment"
               />
               <span>{constants.acknowledgementText}</span>
             </label>
@@ -150,12 +155,13 @@ const Checkout = ({ cartItems, onCheckoutComplete }) => {
               : 'bg-gray-300 text-gray-500 cursor-not-allowed'
               }`}
             disabled={!isFormValid()}
+            data-testid="checkout-submit"
           >
             {constants.proceedLabel}
           </button>
         </form>
         <div className="mt-4 text-center">
-          <Link to="/cart" className="text-blue-500 hover:underline">{constants.backToCartLabel}</Link>
+          <Link to="/cart" className="text-blue-500 hover:underline" data-testid="checkout-back-to-cart">{constants.backToCartLabel}</Link>
         </div>
       </div>
     </div>
