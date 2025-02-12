@@ -42,11 +42,13 @@ Then you can interact with the DB: `sqlite3 backend/shopping.db`
 
 - To run unit tests, run `yarn test:unit`
 - To run unit tests with coverage, run `yarn test:unit:coverage`
+- To run playwright tests, run `yarn playwright test`, it will automatically run all the tests in the tests folder.
+- If you want to run a specific file, run `yarn playwright test tests/path/filename`
 
 ---------------
 
 Notes for myself:
 
 I need to fix
-- ~Checkout behavior, there's a failure~ (SOLVED)
-- ~When user navigates to the product details and adds a product to cart, carting happens as expected but UI doesn't reflect that. Change the button behavior to mimic ProductCard component's on Homepage.~ (SOLVED)
+- Add more API endpoints for adding a product to card, remove a product, checkout etc.
+- CI/CD implementation to run the tests for every push, merge etc.
