@@ -14,6 +14,10 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
+  timeout: 30000,
+  expect: {
+    timeout: 5000
+  },
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -31,19 +35,22 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    headless: true
+    headless: true,
+    actionTimeout: 5000,
+    ignoreHTTPSErrors: true,
+    video: 'on-first-retry'
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome']},
+      use: { ...devices['Desktop Chrome'] },
     },
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox']},
+      use: { ...devices['Desktop Firefox'] },
     },
 
     /*
@@ -74,12 +81,18 @@ export default defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
-  /*
-  webServer: {
-    command: 'yarn start',
-    url: 'http://localhost:3000',
-    reuseExistingServer: true
-  }
-    */
+  webServer: [
+    {
+      command: 'cd backend && ruby app.rb',
+      port: 4567,
+      reuseExistingServer: true,
+      timeout: 10000,
+    },
+    {
+      command: 'cd frontend && yarn start',
+      port: 3000,
+      reuseExistingServer: true,
+      timeout: 20000,
+    }],
+  globalSetup: './playwright/globalSetup.js',
 });
-
