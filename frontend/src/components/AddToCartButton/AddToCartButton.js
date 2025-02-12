@@ -10,7 +10,7 @@ const AddToCartButton = ({ onClick, disabled, children }) => {
           : 'bg-gray-300 text-gray-500 cursor-not-allowed'
       }`}
       disabled={disabled}
-      data-testid="add-to-cart-button"
+      data-testid={disabled ? 'out-of-stock-button' : 'add-to-cart-button'}
     >
       {children}
     </button>
