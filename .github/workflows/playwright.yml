@@ -30,6 +30,7 @@ jobs:
         run: |
           cd backend
           bundle install
+          gem install rackup
 
       - name: Install frontend dependencies
         run: |
