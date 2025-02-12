@@ -22,15 +22,15 @@ jobs:
           node-version: 18
 
       - name: Setup Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2
+          ruby-version: '3.2.4'
+          bundler-cache: true
 
       - name: Install backend dependencies
         run: |
           cd backend
           bundle install
-          gem install rackup
 
       - name: Install frontend dependencies
         run: |
