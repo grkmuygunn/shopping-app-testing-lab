@@ -67,7 +67,7 @@ class ProductsController < Sinatra::Base
         title: "Product #{i+1}",
         description: "This is the description for product #{i+1}",
         price: rand(10.0..100.0).round(2),
-        image_url: "https://via.placeholder.com/150?text=Product#{i+1}",
+        image_url: "https://placehold.co/150x150?text=Product#{i+1}",
         stock: rand(0..50)
       )
     end

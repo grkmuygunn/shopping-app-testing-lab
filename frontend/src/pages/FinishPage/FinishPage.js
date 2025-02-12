@@ -17,7 +17,7 @@ const FinishPage = ({ clearCart }) => {
     <div>
       <Header cartItemCount={0} />
       <div className="container mx-auto mt-8 px-4 text-center">
-        <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-8">
+        <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-8" data-testid="finish-page">
           <h1 className="text-3xl font-bold mb-6 text-green-600">
             {postPurchaseText}
           </h1>
