@@ -26,3 +26,10 @@ yarn-error.log*
 .vscode
 *.swp
 *.swo
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
