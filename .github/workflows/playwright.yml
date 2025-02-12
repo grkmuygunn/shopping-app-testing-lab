@@ -25,18 +25,19 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2.4'
-          bundler-cache: true
 
       - name: Install backend dependencies
         run: |
           cd backend
           bundle install
-          gem install rackup
 
       - name: Install frontend dependencies
         run: |
           cd frontend
           yarn install
+
+      - name: Install Playwright (Root)
+        run: yarn install
 
       - name: Start backend server
         run: |
