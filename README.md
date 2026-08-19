@@ -16,7 +16,7 @@ A small but fully working e-commerce app built as a dedicated QA testing ground.
 
 | Layer | What runs | Where |
 |---|---|---|
-| Unit | 14 Jest suites, 79 tests, against every page and service | `frontend/src/**/__tests__` |
+| Unit | 14 Jest suites, 79 tests, against every page and service | `frontend/src/**/*.test.js` |
 | E2E + API | 4 Playwright specs covering the shopping flows and the REST API | `tests/` |
 | CI | Both layers run on every push and pull request to `master` | `.github/workflows/playwright.yml` |
 
