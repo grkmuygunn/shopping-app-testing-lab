@@ -1,54 +1,57 @@
-Hello! This is a basic -and fake- shopping app I created with the help of Claude AI, to practice and demo automation tools and frameworks.
+# Shopping App Testing Lab
 
-While the initial setup of the application done with Claude, all the automation, CI, tests are (going to be) done by me.
+[![CI](https://github.com/grkmuygunn/shopping-app-testing-lab/actions/workflows/playwright.yml/badge.svg)](https://github.com/grkmuygunn/shopping-app-testing-lab/actions/workflows/playwright.yml)
 
-Here's the stack for this app [TBD further]:
-- A React frontend built with Node.js
-- A Ruby backend using Sinatra
-- Yarn for managing frontend dependencies
-- Docker for containerization
+A small but fully working e-commerce app built as a dedicated QA testing ground. The application itself was scaffolded with AI assistance; all of the tests, the automation and the CI pipeline are hand-built.
 
-QA automation on this project uses (or is going to use):
-- Jest
-- Playwright
-- Storybook
-- GitHub Actions for CI
-- Selenium (maybe?)
-- Something for visual regression testing as well (?)
-and we'll see from there.
+## Stack
 
-Next updates planned is to add a mini AI chatbot, and then possibly to expand some automation there.
+- **Frontend:** React (Create React App), Yarn
+- **Backend:** Ruby + Sinatra, SQLite
+- **Unit tests:** Jest + React Testing Library
+- **E2E and API tests:** Playwright
+- **CI:** GitHub Actions
 
-### Features
+## Test suite
 
-[TBD]
+| Layer | What runs | Where |
+|---|---|---|
+| Unit | 14 Jest suites, 79 tests, against every page and service | `frontend/src/**/__tests__` |
+| E2E + API | 4 Playwright specs covering the shopping flows and the REST API | `tests/` |
+| CI | Both layers run on every push and pull request to `master` | `.github/workflows/playwright.yml` |
 
-### How to run
+Unit-test coverage is enforced in CI with Jest thresholds (90% statements, lines and functions). Current measured coverage: **~96% statements, ~98% lines, 100% functions**.
 
-- Run `ruby app.rb` from `~/backend`
-Then you'll need to seed the DB with `curl -X POST http://localhost:4567/api/seed`.
+## How to run
 
-- Run `yarn start` from `~/frontend`
+Backend (from `backend/`):
 
-#### How to reach to DB
+```bash
+ruby app.rb
+curl -X POST http://localhost:4567/api/seed   # seed the SQLite DB
+```
 
-Make sure you have SQLite3 installed: `sudo apt install sqlite3`
+Frontend (from `frontend/`):
 
-Then you can interact with the DB: `sqlite3 backend/shopping.db`
+```bash
+yarn install
+yarn start
+```
 
-[TBD]
+## How to run the tests
 
-### How to run automated tests [To be extended as I create more layers]
+```bash
+# unit tests (from frontend/)
+yarn test:unit
+yarn test:unit:coverage
 
-- To run unit tests, run `yarn test:unit`
-- To run unit tests with coverage, run `yarn test:unit:coverage`
-- To run playwright tests, run `yarn playwright test`, it will automatically run all the tests in the tests folder.
-- If you want to run a specific file, run `yarn playwright test tests/path/filename`
+# E2E + API tests (from the repo root)
+yarn playwright test
+yarn playwright test tests/path/filename   # a single spec
+```
 
----------------
+## Database access
 
-Notes for myself:
-
-I need to fix
-- Add more API endpoints for adding a product to card, remove a product, checkout etc.
-- CI/CD implementation to run the tests for every push, merge etc.
+```bash
+sqlite3 backend/shopping.db
+```

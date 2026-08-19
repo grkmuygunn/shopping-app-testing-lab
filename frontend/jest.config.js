@@ -26,6 +26,14 @@ module.exports = {
     '!src/**/*.d.ts',
     '!src/setupTests.js'
   ],
+  coverageThreshold: {
+    global: {
+      statements: 90,
+      lines: 90,
+      functions: 90,
+      branches: 75
+    }
+  },
   coverageDirectory: 'coverage',
   coverageReporters: ['text', 'html']
 };
